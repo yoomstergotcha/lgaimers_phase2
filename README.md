@@ -1,6 +1,4 @@
-# LGAimers reproducible experiment layout
-
-This repository replaces `model_pipeline_v4.py -> v5.py -> v6.py` versioning with immutable experiment configs.
+# LGAimers 
 
 ## Principle
 
@@ -46,7 +44,7 @@ This repository replaces `model_pipeline_v4.py -> v5.py -> v6.py` versioning wit
 
 ## Put the actual competition files here
 
-The current V4 anchor expects:
+The current anchor expects:
 
 ```text
 data/train.csv
@@ -55,7 +53,6 @@ data/sample_submission.csv
 data/trackman_history.csv   # optional for the current V1 model input
 ```
 
-If your files are already in `/Users/chunyoomin/lgaimers/data`, place this repository at `/Users/chunyoomin/lgaimers` or copy the scaffold contents there.
 
 ## Reproduce the current V4 anchor
 
