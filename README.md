@@ -35,7 +35,7 @@
 │   └── experiments/          # visualization/analysis only
 ├── tests/                    # regression/leakage tests
 ├── legacy/
-│   └── model_pipeline_v4.py  # frozen reproduction anchor
+│   └── model_pipeline_v4.py  # 실험 중인 코드
 ├── scripts/
 │   └── run_experiment.py
 └── runs/
