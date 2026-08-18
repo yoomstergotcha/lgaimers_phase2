@@ -1,0 +1,14 @@
+name: base263
+base_contract: Base263
+categorical_contract: Cat11
+blocks:
+  - base_situation
+  - reconstructed_pitch_flags
+  - seasonal_flat
+  - context_effect
+  - safe_context
+  - hierarchical_logit
+  - current_season
+  - preseason_missing
+  - latent_skill
+# Base263 feature order remains code-owned until registry migration is complete.

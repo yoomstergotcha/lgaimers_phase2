@@ -1,0 +1,35 @@
+experiment:
+  id: exp_002_v4_fastdev
+  description: "Base263 reproduction + observable/resumable DL epoch selection"
+
+runner:
+  implementation: legacy_v4
+  device: auto
+
+features:
+  temporal_history_scope: all
+
+training:
+  sample_weight_mode: none
+  old_f_weight: 0.25
+  dev_2023_weight: 2.0
+  catboost_locked_candidates: 3
+  seeds: [41, 42, 43]
+
+transformer:
+  d_model: 64
+  n_heads: 4
+  n_layers: 2
+  ffn_dim: 128
+  dropout: 0.15
+  token_dropout: 0.10
+  batch_size: 1024
+  lr: 0.001
+  weight_decay: 0.0001
+  max_epochs: 30
+  min_epochs: 5
+  patience: 5
+  min_delta: 0.000001
+  eval_every: 1
+  log_every: 1
+  resume: true

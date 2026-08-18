@@ -1,0 +1,13 @@
+name: temporal_locked_v1
+dev:
+  validation_seasons: [2022, 2023]
+  season_weights:
+    2022: 1.0
+    2023: 2.0
+locked:
+  validation_season: 2024
+  allow_retune_after_view: false
+final:
+  train_through: 2024
+  inference_season: 2025
+seeds: [41, 42, 43]

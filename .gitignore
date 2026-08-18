@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Environment / secrets
+.env
+
+# Data
+data/
+dataset/
+datasets/
+*.csv
+*.parquet
+*.zip
+
+# Models
+models/
+checkpoints/
+*.pth
+*.pt
+*.ckpt
+*.cbm
+
+# Experiment outputs
+runs/
+output/
+
+
+# Mac
+.DS_Store
