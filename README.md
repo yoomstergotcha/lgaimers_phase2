@@ -1,120 +1,25 @@
-# LGAimers 
+# KBO 제구 예측 AI - 딥러닝(NN) 모델 및 분석 자료 총정리
 
-## Principle
+이 폴더는 팀원 간의 완벽한 모델 정합성과 분석 공유를 위해 **신경망(NN) 계열 모델 전체의 아키텍처, 피처 엔지니어링, 진화 과정 및 실험 기록**을 모아둔 폴더입니다.
 
-- **Code** describes reusable behavior.
-- **Experiment YAML** describes one hypothesis/run.
-- **Run directory** stores immutable outputs and the frozen config.
-- **Git commit + config hash + pipeline manifest** identify what produced a result.
-- **Raw data never changes in place.**
+---
 
-## Directory structure
+## 📌 주요 파일 안내
 
-```text
-.
-├── configs/
-│   ├── data/                 # paths / schema
-│   ├── features/             # feature-set definitions
-│   ├── models/               # reusable model defaults
-│   ├── validation/           # temporal split / lock policy
-│   └── experiments/          # ONLY place to define experiment variants
-├── data/
-│   ├── raw/                  # immutable source files
-│   ├── interim/              # reconstructed flags etc.
-│   ├── processed/            # model-ready tables
-│   └── cache/                # disposable cached artifacts
-├── src/lgaimers/
-│   ├── data/
-│   ├── features/
-│   ├── models/
-│   ├── evaluation/
-│   ├── pipeline/
-│   └── utils/
-├── notebooks/
-│   ├── eda/                  # exploration only; no canonical pipeline logic
-│   └── experiments/          # visualization/analysis only
-├── tests/                    # regression/leakage tests
-├── legacy/
-│   └── model_pipeline_v4.py  # 실험 중인 코드
-├── scripts/
-│   └── run_experiment.py
-└── runs/
-    └── exp_XXX/              # immutable run artifacts
-```
+1. **NN_Model_Summary.pdf (핵심 추천 👑)**
+   - 딥러닝(NN) 모델 계열의 전체 진화 스토리와 피처 수식, 성공/실패 분석을 담은 2페이지 공식 PDF 요약본.
+2. **
+n_model_summary.md**
+   - GitHub 웹 상에서 바로 열람할 수 있는 마크다운 버전 총정리 문서.
+3. **experiment_history.md**
+   - 1단계 베이스라인부터 **29단계 LB 1,086.89점 역대 1위 SOTA 달성**까지의 전체 사고 과정(Thinking Process) 상세 기록.
+4. **KBO_Model_Submission_History.xlsx & KBO_Model_Experiment_History.xlsx**
+   - 총 37건의 리더보드 제출 기록과 21대 핵심 마일스톤 엑셀 시트.
+5. **package_v5_pipeline.py & 	rain_nn_v5_multiseed.py**
+   - 1,086.89점 SOTA를 견인한 **NN v5 Multi-Seed (15-Fold) 학습 및 추론 파이프라인 코드**.
 
-## Put the actual competition files here
+---
 
-The current anchor expects:
-
-```text
-data/train.csv
-data/test.csv
-data/sample_submission.csv
-data/trackman_history.csv   # optional for the current V1 model input
-```
-
-
-## Reproduce the current V4 anchor
-
-```bash
-python scripts/run_experiment.py \
-  --config configs/experiments/exp_000_v4_repro.yaml \
-  --stage prepare
-
-python scripts/run_experiment.py \
-  --config configs/experiments/exp_000_v4_repro.yaml \
-  --stage dev
-
-python scripts/run_experiment.py \
-  --config configs/experiments/exp_000_v4_repro.yaml \
-  --stage locked
-
-python scripts/run_experiment.py \
-  --config configs/experiments/exp_000_v4_repro.yaml \
-  --stage final
-```
-
-The first invocation creates `runs/exp_000_v4_repro/config.frozen.yaml`. If you later edit the YAML but reuse the same experiment ID, the runner aborts. This prevents silent experiment mutation.
-
-## How to change a feature
-
-Do **not** create `model_pipeline_v5.py`.
-
-Example: test `R-only seasonal history`.
-
-1. Copy `configs/experiments/exp_000_v4_repro.yaml` to `exp_002_r_only.yaml`.
-2. Change:
-
-```yaml
-experiment:
-  id: exp_002_r_only
-  parent: exp_000_v4_repro
-
-features:
-  temporal_history_scope: R
-```
-
-3. Run dev under the new config.
-
-The code stays the same; only the hypothesis/config differs.
-
-## What belongs in notebooks?
-
-Notebooks may inspect distributions, compare run outputs, and visualize errors. They must **not** contain the canonical feature-generation implementation. Once an EDA idea is accepted, move it to `src/lgaimers/features/` and test it.
-
-## Recommended experiment naming
-
-```text
-exp_000_v4_repro
-exp_001_rel_level
-exp_002_rel_trend
-exp_003_rel_level_plus_trend
-exp_004_reliability_only
-exp_005_query_missing_embed
-```
-
-Keep the numeric ID permanent. Add `parent:` to record which experiment it changed from.
-
-## Next migration step
-
-Use `MIGRATION_MAP.md`. Migrate the V4 code one component at a time, always checking numerical parity against `legacy/model_pipeline_v4.py` before switching the runner.
+## 🏆 핵심 성과 요약
+- **0821 FINAL CatBoost (70%) + NN v5 15-Fold (30%) 고정 선형 앙상블**
+- **Public LB 1,086.8902점 👑 (대회 공식 1위 역대 최고 신기록)**
